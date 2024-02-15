@@ -20,7 +20,7 @@ class closed_loop():
             self.time_queue.put(utime.ticks_ms()-self.start_time)
             self.pos_queue.put(self.measured_output)
         else:
-            return 0
+            return "End"
         return actuation_value
         
     def set_setpoint(self, setpoint):

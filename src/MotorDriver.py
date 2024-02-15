@@ -36,23 +36,27 @@ class MotorDriver:
                cycle of the voltage sent to the motor
         """
         #print(f"Setting Duty Cycle to {duty}")
-
-        if duty > 0:
-            if duty > 100:
-                self.PWM1.pulse_width_percent(100)
-            else:
-                self.PWM1.pulse_width_percent(duty)  # Set duty cycle for forward motion
-            self.PWM2.pulse_width_percent(0)
-        elif duty < 0:
-            if duty < -100:
-                self.PWM2.pulse_width_percent(100)
-            else:
-                self.PWM2.pulse_width_percent((-1) * duty)  # Set duty cycle for backward motion
-            self.PWM1.pulse_width_percent(0)
+        try:
+            int(duty)
+        except (ValueError, IndexError):
+            print("Invalid duty cycle")
         else:
-            self.PWM1.pulse_width_percent(0)
-            self.PWM2.pulse_width_percent(0)
-        self.EN.value(1)
+            if duty > 0:
+                if duty > 100:
+                    self.PWM1.pulse_width_percent(100)
+                else:
+                    self.PWM1.pulse_width_percent(duty)  # Set duty cycle for forward motion
+                self.PWM2.pulse_width_percent(0)
+            elif duty < 0:
+                if duty < -100:
+                    self.PWM2.pulse_width_percent(100)
+                else:
+                    self.PWM2.pulse_width_percent((-1) * duty)  # Set duty cycle for backward motion
+                self.PWM1.pulse_width_percent(0)
+            else:
+                self.PWM1.pulse_width_percent(0)
+                self.PWM2.pulse_width_percent(0)
+            self.EN.value(1)
 
 
 #

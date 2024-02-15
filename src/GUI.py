@@ -21,7 +21,7 @@ def plot_example(plot_axes, plot_canvas, xlabel, ylabel):
     """
 
     time_data = []
-    height_data = []
+    voltage_data = []
     ser = Serial('/dev/tty.usbmodem204F377739472', timeout=10)
     # Seamus's serial /dev/tty.usbmodem204F377739472
     ser.write(b'\x02')
@@ -35,15 +35,15 @@ def plot_example(plot_axes, plot_canvas, xlabel, ylabel):
             print("exception")
         else:
             time_data.append(float(line[0]))
-            height_data.append(float(line[1]))
+            voltage_data.append(float(line[1]))
         finally:
             line = ser.readline().decode('utf-8').rstrip().split(",", 1)
 # Calculation of Voltage
-    voltage_theory = [3.3*(1 - math.exp((-1)*t/330)) for t in time_data]
+    #voltage_theory = [3.3*(1 - math.exp((-1)*t/330)) for t in time_data]
 
     # Draw the plot. Of course, the axes must be labeled. A grid is optional
-    plot_axes.plot(time_data, height_data, linestyle='dotted')
-    plot_axes.plot(time_data, voltage_theory)
+    plot_axes.plot(time_data, voltage_data, linestyle='dotted')
+    #plot_axes.plot(time_data, voltage_theory)
     plot_axes.set_xlabel(xlabel)
     plot_axes.set_ylabel(ylabel)
     plot_axes.legend("ET")
