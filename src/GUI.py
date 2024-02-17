@@ -1,69 +1,92 @@
-"""! @file GUI.py
-This file creates a graphical interface to trigger a step response function flashed on our microcontroller
+"""!
+@file lab0example.py
+Run real or simulated dynamic response tests and plot the results. This program
+demonstrates a way to make a simple GUI with a plot in it. It uses Tkinter, an
+old-fashioned and ugly but useful GUI library which is included in Python by
+default.
+
+This file is based loosely on an example found at
+https://matplotlib.org/stable/gallery/user_interfaces/embedding_in_tk_sgskip.html
+
+@author Spluttflob
+@date   2023-12-24 Original program, based on example from above listed source
+@copyright (c) 2023 by Spluttflob and released under the GNU Public Licenes V3
 """
 
 import math
 import tkinter
+from random import random
 from serial import Serial
 from matplotlib.figure import Figure
-from matplotlib import pyplot
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,
+                                               NavigationToolbar2Tk)
+KP = 0
 
-
+def KP_input():
+    global KP
+    KP = input("Enter KP: ")
+    
 def plot_example(plot_axes, plot_canvas, xlabel, ylabel):
-    """! This function defines both plots (Theoretical and Experimental).
-    It reads data through the serial port, cleans it up, and plots the step response.
-
-    @param plot_axes: The axes on which the plots will be drawn.
-    @param plot_canvas: The canvas on which the plots will be displayed.
-    @param xlabel: The label for the x-axis.
-    @param ylabel: The label for the y-axis.
+    """!
+    Make an example plot to show a simple(ish) way to embed a plot into a GUI.
+    The data is just a nonsense simulation of a diving board from which a
+    typically energetic otter has just jumped.
+    @param plot_axes The plot axes supplied by Matplotlib
+    @param plot_canvas The plot canvas, also supplied by Matplotlib
+    @param xlabel The label for the plot's horizontal axis
+    @param ylabel The label for the plot's vertical axis
     """
-
-    time_data = []
-    voltage_data = []
-    ser = Serial('/dev/tty.usbmodem204F377739472', timeout=10)
-    # Seamus's serial /dev/tty.usbmodem204F377739472
-    ser.write(b'\x02')
-    ser.write(b'\x04')
-    line = ser.readline().decode('utf-8').rstrip().split(",", 1)
-    while line[0] != "END":
-        try:
-            float(line[0])
-            float(line[1])
-        except (ValueError, IndexError):
-            print("exception")
-        else:
-            time_data.append(float(line[0]))
-            voltage_data.append(float(line[1]))
-        finally:
-            line = ser.readline().decode('utf-8').rstrip().split(",", 1)
-# Calculation of Voltage
-    #voltage_theory = [3.3*(1 - math.exp((-1)*t/330)) for t in time_data]
+    # Here we create some fake data. It is put into an X-axis list (times) and
+    # a Y-axis list (boing). Real test data will be read through the USB-serial
+    # port and processed to make two lists like these
+    print(KP)
+    
+#     time_data = []
+#     voltage_data = []
+#     while not ser.inWaiting():
+#         pass 
+#     line = ser.readline().decode('utf-8').rstrip().split(",", 1)
+#     while line[0] != "END":
+#         try:
+#             float(line[0])
+#             float(line[1])
+#         except (ValueError, IndexError):
+#             print("exception")
+#         else:
+#             time_data.append(float(line[0]))
+#             voltage_data.append(float(line[1]))
+#         finally:
+#             line = ser.readline().decode('utf-8').rstrip().split(",", 1)
+    
+    times = [t / 7 for t in range(200)]
+    rando = random() * 2 * math.pi - math.pi
+    boing = [-math.sin(t + rando) * math.exp(-(t + rando) / 11) for t in times]
 
     # Draw the plot. Of course, the axes must be labeled. A grid is optional
-    plot_axes.plot(time_data, voltage_data, linestyle='dotted')
-    #plot_axes.plot(time_data, voltage_theory)
+    plot_axes.plot(times, boing)
     plot_axes.set_xlabel(xlabel)
     plot_axes.set_ylabel(ylabel)
-    plot_axes.legend("ET")
     plot_axes.grid(True)
     plot_canvas.draw()
 
 
-def tk_matplot(plot_function, xlabel, ylabel, title):
-    """! This function is for the GUI program.
-
-    @param plot_function: The function responsible for plotting the data.
-    @param xlabel: The label for the x-axis.
-    @param ylabel: The label for the y-axis.
-    @param title: The title of the GUI window.
+def tk_matplot(plot_function, input_fun, xlabel, ylabel, title):
+    """!
+    Create a TK window with one embedded Matplotlib plot.
+    This function makes the window, displays it, and runs the user interface
+    until the user closes the window. The plot function, which must have been
+    supplied by the user, should draw the plot on the supplied plot axes and
+    call the draw() function belonging to the plot canvas to show the plot. 
+    @param plot_function The function which, when run, creates a plot
+    @param xlabel The label for the plot's horizontal axis
+    @param ylabel The label for the plot's vertical axis
+    @param title A title for the plot; it shows up in window title bar
     """
-
+    # Create the main program window and give it a title
     tk_root = tkinter.Tk()
     tk_root.wm_title(title)
 
-    # Create a Matplotlib
+    # Create a Matplotlib 
     fig = Figure()
     axes = fig.add_subplot()
 
@@ -83,20 +106,33 @@ def tk_matplot(plot_function, xlabel, ylabel, title):
                                 text="Run Test",
                                 command=lambda: plot_function(axes, canvas,
                                                               xlabel, ylabel))
+    button_KP = tkinter.Button(master=tk_root, text="KP",
+                               command=lambda: KP_input())
 
     # Arrange things in a grid because "pack" is weird
-    canvas.get_tk_widget().grid(row=0, column=0, columnspan=3)
-    toolbar.grid(row=1, column=0, columnspan=3)
+    canvas.get_tk_widget().grid(row=0, column=0, columnspan=4)
+    toolbar.grid(row=1, column=0, columnspan=4)
     button_run.grid(row=2, column=0)
     button_clear.grid(row=2, column=1)
-    button_quit.grid(row=2, column=2)
+    button_quit.grid(row=2, column=3)
+    button_KP.grid(row=2, column=2)
 
     # This function runs the program until the user decides to quit
     tkinter.mainloop()
 
 
+# This main code is run if this file is the main program but won't run if this
+# file is imported as a module by some other main program
 if __name__ == "__main__":
-    tk_matplot(plot_example,
+#     ser = Serial('/dev/tty.usbmodem204F377739472')
+#     # Seamus's serial /dev/tty.usbmodem204F377739472
+#     # Paul's serial /dev/tty.usbmodem204F377739472
+#     ser.write(b'\x02')
+#     ser.write(b'\x04')
+    
+    tk_matplot(plot_example, KP_input, 
                xlabel="Time (ms)",
-               ylabel="Voltage (V)",
+               ylabel="Position",
                title="Step Response")
+    
+#    ser.close()
