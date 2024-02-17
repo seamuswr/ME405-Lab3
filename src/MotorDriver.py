@@ -63,7 +63,7 @@ class MotorDriver:
 if __name__ == '__main__':
     # testing the code
 
-    moe = MotorDriver(pyb.Pin.board.PA10, pyb.Pin.board.PB4, pyb.Pin.board.PB5, pyb.Timer(3, freq=20000))
+    moe = MotorDriver.MotorDriver(pyb.Pin.board.PC1, pyb.Pin.board.PA0, pyb.Pin.board.PA1, pyb.Timer(5, freq=20000))
     moe.set_duty_cycle(-42)
     time.sleep(4)
     moe.set_duty_cycle(73)

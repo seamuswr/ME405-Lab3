@@ -6,10 +6,16 @@ import pyb
 
 enc = encoder_reader.Encoder(pyb.Pin.board.PC6, pyb.Pin.board.PC7, pyb.Timer(8, prescaler=0, period=65535))
 moe = MotorDriver.MotorDriver(pyb.Pin.board.PC1, pyb.Pin.board.PA0, pyb.Pin.board.PA1, pyb.Timer(5, freq=20000))
+data = pyb.USB_VCP()
 
 while(True):
     try:
-        Kp = float(input("Kp: "))
+#         while not usb_vcp.any():
+#             pass
+#         data = usb_vcp.read(4)
+#         temp = data.decode('utf-8')
+        temp = '0.5\n'
+        Kp = float(input(temp))
     except (ValueError, IndexError):
         print("Invalid Kp")
     else:

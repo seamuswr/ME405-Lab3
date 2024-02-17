@@ -37,9 +37,7 @@ class Encoder:
             temp += 65535
         self.last = self.tim.counter()     
         self.position += temp
-        #print(self.position)
         return self.position//16
-        #time.sleep(.2)
     
     def zero(self):
         """
@@ -55,8 +53,5 @@ if __name__ == '__main__':
     enc = Encoder(pyb.Pin.board.PC6, pyb.Pin.board.PC7, pyb.Timer(8, prescaler=0, period=65535))
 
     while(True):
+        print(enc.read())      
         
-        enc.read()        
-        
-
-    
