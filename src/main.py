@@ -10,12 +10,13 @@ data = pyb.USB_VCP()
 
 while(True):
     try:
-#         while not usb_vcp.any():
-#             pass
-#         data = usb_vcp.read(4)
-#         temp = data.decode('utf-8')
-        temp = '0.5\n'
-        Kp = float(input(temp))
+        while not data.any():
+            print(1)
+            pass
+        temp = data.read(4).decode('utf-8')
+        #temp = "0.5\n"
+#        temp = temp.decode('utf-8')
+        Kp = float(temp)
     except (ValueError, IndexError):
         print("Invalid Kp")
     else:

@@ -13,6 +13,7 @@ https://matplotlib.org/stable/gallery/user_interfaces/embedding_in_tk_sgskip.htm
 @copyright (c) 2023 by Spluttflob and released under the GNU Public Licenes V3
 """
 
+import time
 import math
 import tkinter
 from random import random
@@ -20,7 +21,7 @@ from serial import Serial
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,
                                                NavigationToolbar2Tk)
-KP = 0
+KP = "0"
 
 def KP_input():
     global KP
@@ -39,36 +40,42 @@ def plot_example(plot_axes, plot_canvas, xlabel, ylabel):
     # Here we create some fake data. It is put into an X-axis list (times) and
     # a Y-axis list (boing). Real test data will be read through the USB-serial
     # port and processed to make two lists like these
-    print(KP)
+    ser = Serial('/dev/tty.usbmodem204F377739472')
+#     # Seamus's serial /dev/tty.usbmodem204F377739472
+#     # Paul's serial /dev/tty.usbmodem204F377739472
+    ser.write(b'\x02')
+    ser.write(b'\x04')
+    # Wait for MCU to response back
+    while not ser.inWaiting():
+        pass
+    time.sleep(0.1)
+    temp = KP.encode('utf-8')
+    ser.write(temp)
     
-#     time_data = []
-#     voltage_data = []
-#     while not ser.inWaiting():
-#         pass 
-#     line = ser.readline().decode('utf-8').rstrip().split(",", 1)
-#     while line[0] != "END":
-#         try:
-#             float(line[0])
-#             float(line[1])
-#         except (ValueError, IndexError):
-#             print("exception")
-#         else:
-#             time_data.append(float(line[0]))
-#             voltage_data.append(float(line[1]))
-#         finally:
-#             line = ser.readline().decode('utf-8').rstrip().split(",", 1)
-    
-    times = [t / 7 for t in range(200)]
-    rando = random() * 2 * math.pi - math.pi
-    boing = [-math.sin(t + rando) * math.exp(-(t + rando) / 11) for t in times]
+    time_data = []
+    voltage_data = []
+    while not ser.inWaiting():
+        pass
+    line = ser.readline().decode('utf-8').rstrip().split(",", 1)
+    while line[0] != "END":
+        try:
+            float(line[0])
+            float(line[1])
+        except (ValueError, IndexError):
+            print("exception")
+        else:
+            time_data.append(float(line[0]))
+            voltage_data.append(float(line[1]))
+        finally:
+            line = ser.readline().decode('utf-8').rstrip().split(",", 1)
 
     # Draw the plot. Of course, the axes must be labeled. A grid is optional
-    plot_axes.plot(times, boing)
+    plot_axes.plot(time_data, voltage_data)
     plot_axes.set_xlabel(xlabel)
     plot_axes.set_ylabel(ylabel)
     plot_axes.grid(True)
     plot_canvas.draw()
-
+    ser.close()
 
 def tk_matplot(plot_function, input_fun, xlabel, ylabel, title):
     """!
@@ -107,7 +114,7 @@ def tk_matplot(plot_function, input_fun, xlabel, ylabel, title):
                                 command=lambda: plot_function(axes, canvas,
                                                               xlabel, ylabel))
     button_KP = tkinter.Button(master=tk_root, text="KP",
-                               command=lambda: KP_input())
+                               command=lambda: input_fun())
 
     # Arrange things in a grid because "pack" is weird
     canvas.get_tk_widget().grid(row=0, column=0, columnspan=4)
@@ -125,8 +132,8 @@ def tk_matplot(plot_function, input_fun, xlabel, ylabel, title):
 # file is imported as a module by some other main program
 if __name__ == "__main__":
 #     ser = Serial('/dev/tty.usbmodem204F377739472')
-#     # Seamus's serial /dev/tty.usbmodem204F377739472
-#     # Paul's serial /dev/tty.usbmodem204F377739472
+#      # Seamus's serial /dev/tty.usbmodem204F377739472
+#      # Paul's serial /dev/tty.usbmodem204F377739472
 #     ser.write(b'\x02')
 #     ser.write(b'\x04')
     
@@ -135,4 +142,4 @@ if __name__ == "__main__":
                ylabel="Position",
                title="Step Response")
     
-#    ser.close()
+    #ser.close()
