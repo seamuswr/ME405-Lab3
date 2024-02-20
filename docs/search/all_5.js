@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['set_5fduty_5fcycle_0',['set_duty_cycle',['../class_motor_driver_1_1_motor_driver.html#a8fa27d276c15388a80f7c8a4a84b73ad',1,'MotorDriver::MotorDriver']]]
+  ['read_0',['read',['../classencoder__reader_1_1_encoder.html#a0b5ad086c21a7c4c0fdcc7977b596092',1,'encoder_reader::Encoder']]],
+  ['run_1',['run',['../classclosed__loop_1_1_closed_loop.html#a48c833ac283315f075b38341efc63884',1,'closed_loop::ClosedLoop']]]
 ];

@@ -83,12 +83,17 @@ $(function() {
   <div class="headertitle"><div class="title">MotorDriver.MotorDriver Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class for controlling a motor driver.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa1a4fe39dd448a4e53bf1d92403d7516" id="r_aa1a4fe39dd448a4e53bf1d92403d7516"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1a4fe39dd448a4e53bf1d92403d7516">__init__</a> (self, en_pin, IN1A_pin, IN2A_pin, PWM_tim)</td></tr>
+<tr class="memdesc:aa1a4fe39dd448a4e53bf1d92403d7516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a motor driver by initializing GPIO pins and turning off the motor for safety.  <br /></td></tr>
 <tr class="separator:aa1a4fe39dd448a4e53bf1d92403d7516"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fa27d276c15388a80f7c8a4a84b73ad" id="r_a8fa27d276c15388a80f7c8a4a84b73ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fa27d276c15388a80f7c8a4a84b73ad">set_duty_cycle</a> (self, duty)</td></tr>
+<tr class="memdesc:a8fa27d276c15388a80f7c8a4a84b73ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the duty cycle to be sent to the motor.  <br /></td></tr>
 <tr class="separator:a8fa27d276c15388a80f7c8a4a84b73ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -112,7 +117,10 @@ Public Attributes</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>PWM2</b></td></tr>
 <tr class="separator:a86eff9a69fad8da0a6d6c2fd1ea2f661"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class for controlling a motor driver. </p>
+<p>This class provides methods to control a motor driver, including setting the duty cycle for motor control. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa1a4fe39dd448a4e53bf1d92403d7516" name="aa1a4fe39dd448a4e53bf1d92403d7516"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1a4fe39dd448a4e53bf1d92403d7516">&#9670;&#160;</a></span>__init__()</h2>
 
@@ -146,13 +154,18 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Creates a motor driver by initializing GPIO
-pins and turning off the motor for safety. 
-@param en_pin: Pin connected to the enable pin of the motor driver
-@param IN1A_pin: Pin connected to IN1A of the motor driver
-@param IN2A_pin: Pin connected to IN2A of the motor driver
-@param timer: Timer used for PWM control
-</pre> 
+
+<p>Creates a motor driver by initializing GPIO pins and turning off the motor for safety. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">en_pin</td><td>Pin connected to the enable pin of the motor driver. </td></tr>
+    <tr><td class="paramname">IN1A_pin</td><td>Pin connected to IN1A of the motor driver. </td></tr>
+    <tr><td class="paramname">IN2A_pin</td><td>Pin connected to IN2A of the motor driver. </td></tr>
+    <tr><td class="paramname">PWM_tim</td><td>Timer used for PWM control. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -174,13 +187,16 @@ pins and turning off the motor for safety.
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">This method sets the duty cycle to be sent
-to the motor to the given level. Positive values
-cause torque in one direction, negative values
-in the opposite direction.
-@param duty: A signed integer holding the duty
-       cycle of the voltage sent to the motor
-</pre> 
+
+<p>Sets the duty cycle to be sent to the motor. </p>
+<p>Positive values cause torque in one direction, negative values in the opposite direction.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">duty</td><td>A signed integer holding the duty cycle of the voltage sent to the motor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>

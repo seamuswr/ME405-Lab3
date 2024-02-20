@@ -1,12 +1,17 @@
 \doxysection{Motor\+Driver.\+Motor\+Driver Class Reference}
 \hypertarget{class_motor_driver_1_1_motor_driver}{}\label{class_motor_driver_1_1_motor_driver}\index{MotorDriver.MotorDriver@{MotorDriver.MotorDriver}}
+
+
+Class for controlling a motor driver.  
+
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_motor_driver_1_1_motor_driver_aa1a4fe39dd448a4e53bf1d92403d7516}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, en\+\_\+pin, IN1\+A\+\_\+pin, IN2\+A\+\_\+pin, PWM\+\_\+tim)
-\item 
+\begin{DoxyCompactList}\small\item\em Creates a motor driver by initializing GPIO pins and turning off the motor for safety. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_motor_driver_1_1_motor_driver_a8fa27d276c15388a80f7c8a4a84b73ad}{set\+\_\+duty\+\_\+cycle}} (self, duty)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the duty cycle to be sent to the motor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -30,6 +35,11 @@
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Class for controlling a motor driver. 
+
+This class provides methods to control a motor driver, including setting the duty cycle for motor control. 
+
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{class_motor_driver_1_1_motor_driver_aa1a4fe39dd448a4e53bf1d92403d7516}\label{class_motor_driver_1_1_motor_driver_aa1a4fe39dd448a4e53bf1d92403d7516} 
 \index{MotorDriver.MotorDriver@{MotorDriver.MotorDriver}!\_\_init\_\_@{\_\_init\_\_}}
@@ -37,14 +47,22 @@
 \doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
 {\footnotesize\ttfamily Motor\+Driver.\+Motor\+Driver.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{en\+\_\+pin,  }\item[{}]{IN1\+A\+\_\+pin,  }\item[{}]{IN2\+A\+\_\+pin,  }\item[{}]{PWM\+\_\+tim }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}Creates a motor driver by initializing GPIO
-pins and turning off the motor for safety. 
-@param en_pin: Pin connected to the enable pin of the motor driver
-@param IN1A_pin: Pin connected to IN1A of the motor driver
-@param IN2A_pin: Pin connected to IN2A of the motor driver
-@param timer: Timer used for PWM control
-\end{DoxyVerb}
- 
+
+
+Creates a motor driver by initializing GPIO pins and turning off the motor for safety. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em en\+\_\+pin} & Pin connected to the enable pin of the motor driver. \\
+\hline
+{\em IN1\+A\+\_\+pin} & Pin connected to IN1A of the motor driver. \\
+\hline
+{\em IN2\+A\+\_\+pin} & Pin connected to IN2A of the motor driver. \\
+\hline
+{\em PWM\+\_\+tim} & Timer used for PWM control. \\
+\hline
+\end{DoxyParams}
+
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{class_motor_driver_1_1_motor_driver_a8fa27d276c15388a80f7c8a4a84b73ad}\label{class_motor_driver_1_1_motor_driver_a8fa27d276c15388a80f7c8a4a84b73ad} 
@@ -53,14 +71,18 @@ pins and turning off the motor for safety.
 \doxysubsubsection{\texorpdfstring{set\_duty\_cycle()}{set\_duty\_cycle()}}
 {\footnotesize\ttfamily Motor\+Driver.\+Motor\+Driver.\+set\+\_\+duty\+\_\+cycle (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{duty }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}This method sets the duty cycle to be sent
-to the motor to the given level. Positive values
-cause torque in one direction, negative values
-in the opposite direction.
-@param duty: A signed integer holding the duty
-       cycle of the voltage sent to the motor
-\end{DoxyVerb}
- 
+
+
+Sets the duty cycle to be sent to the motor. 
+
+Positive values cause torque in one direction, negative values in the opposite direction.
+
+
+\begin{DoxyParams}{Parameters}
+{\em duty} & A signed integer holding the duty cycle of the voltage sent to the motor. \\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

@@ -1,21 +1,24 @@
 var indexSectionsWithContent =
 {
-  0: "_cemrsz",
+  0: "_cemprsz",
   1: "cem",
-  2: "_rsz"
+  2: "m",
+  3: "_prsz"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "functions"
+  2: "files",
+  3: "functions"
 };
 
 var indexSectionLabels =
 {
   0: "All",
   1: "Classes",
-  2: "Functions"
+  2: "Files",
+  3: "Functions"
 };
 

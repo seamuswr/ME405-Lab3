@@ -1,0 +1,39 @@
+\doxysection{src/main.py File Reference}
+\hypertarget{main_8py}{}\label{main_8py}\index{src/main.py@{src/main.py}}
+
+
+This file runs the control system on the microcontroller.  
+
+
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8py_ac45bc2ecb2400204889bd16197058050}\label{main_8py_ac45bc2ecb2400204889bd16197058050} 
+{\bfseries main.\+enc} = \mbox{\hyperlink{classencoder__reader_1_1_encoder}{encoder\+\_\+reader.\+Encoder}}(pyb.\+Pin.\+board.\+PC6, pyb.\+Pin.\+board.\+PC7, pyb.\+Timer(8, prescaler=0, period=65535))
+\item 
+\Hypertarget{main_8py_a8f2f54089b569c0054ca1f819f855a5d}\label{main_8py_a8f2f54089b569c0054ca1f819f855a5d} 
+{\bfseries main.\+moe} = \mbox{\hyperlink{class_motor_driver_1_1_motor_driver}{Motor\+Driver.\+Motor\+Driver}}(pyb.\+Pin.\+board.\+PC1, pyb.\+Pin.\+board.\+PA0, pyb.\+Pin.\+board.\+PA1, pyb.\+Timer(5, freq=20000))
+\item 
+\Hypertarget{main_8py_a9582bd76fa0468c20a318f771203f2f6}\label{main_8py_a9582bd76fa0468c20a318f771203f2f6} 
+{\bfseries main.\+data} = pyb.\+USB\+\_\+\+VCP()
+\item 
+\Hypertarget{main_8py_a72d4940f3cafefdc5c0619413cb02b4b}\label{main_8py_a72d4940f3cafefdc5c0619413cb02b4b} 
+{\bfseries main.\+temp} = data.\+read(4).decode(\textquotesingle{}utf-\/8\textquotesingle{})
+\item 
+\Hypertarget{main_8py_a62bb069cc916457d26d7121c79cf94ab}\label{main_8py_a62bb069cc916457d26d7121c79cf94ab} 
+{\bfseries main.\+Kp} = float(temp)
+\item 
+\Hypertarget{main_8py_a86c7a85ae73388f3c649c1f7eae1c76b}\label{main_8py_a86c7a85ae73388f3c649c1f7eae1c76b} 
+{\bfseries main.\+close} = closed\+\_\+loop.\+closed\+\_\+loop(0, Kp)
+\item 
+\Hypertarget{main_8py_a8aee316ea12ad99521914a97b29015aa}\label{main_8py_a8aee316ea12ad99521914a97b29015aa} 
+{\bfseries main.\+output} = close.\+run(1024, enc.\+read())
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file runs the control system on the microcontroller. 
+
+@\+Author ME405 team 8 \begin{DoxyDate}{Date}
+20-\/Feb-\/2024 
+\end{DoxyDate}
