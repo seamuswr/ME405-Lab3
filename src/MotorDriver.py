@@ -1,19 +1,32 @@
+"""!
+@file motor_driver.py
+This file contains a class for controlling a motor driver.
+
+@Author ME405 team 8
+@date 20-Feb-2024
+"""
+
 from pyb import Pin, Timer
 import time
 
 
 class MotorDriver:
-    # Constructor to initialize motor control pins and PWM timer
+    """!
+    Class for controlling a motor driver.
+
+    This class provides methods to control a motor driver, including setting the duty cycle
+    for motor control.
+    """
+
     def __init__(self, en_pin, IN1A_pin, IN2A_pin, PWM_tim):
-        """ 
-        Creates a motor driver by initializing GPIO
-        pins and turning off the motor for safety. 
-        @param en_pin: Pin connected to the enable pin of the motor driver
-        @param IN1A_pin: Pin connected to IN1A of the motor driver
-        @param IN2A_pin: Pin connected to IN2A of the motor driver
-        @param timer: Timer used for PWM control
+        """!
+        Creates a motor driver by initializing GPIO pins and turning off the motor for safety.
+
+        @param en_pin: Pin connected to the enable pin of the motor driver.
+        @param IN1A_pin: Pin connected to IN1A of the motor driver.
+        @param IN2A_pin: Pin connected to IN2A of the motor driver.
+        @param PWM_tim: Timer used for PWM control.
         """
-        #print("Creating a motor driver")
         self.EN = Pin(en_pin, Pin.OUT_OD, Pin.PULL_UP)
         self.IN1A = Pin(IN1A_pin, Pin.OUT_PP)
         self.IN2A = Pin(IN2A_pin, Pin.OUT_PP)
@@ -25,17 +38,14 @@ class MotorDriver:
 
         self.EN.value(0)
 
-    # Method to set duty cycle for motor control
     def set_duty_cycle(self, duty):
+        """!
+        Sets the duty cycle to be sent to the motor.
+
+        Positive values cause torque in one direction, negative values in the opposite direction.
+
+        @param duty: A signed integer holding the duty cycle of the voltage sent to the motor.
         """
-        This method sets the duty cycle to be sent
-        to the motor to the given level. Positive values
-        cause torque in one direction, negative values
-        in the opposite direction.
-        @param duty: A signed integer holding the duty
-               cycle of the voltage sent to the motor
-        """
-        #print(f"Setting Duty Cycle to {duty}")
         try:
             int(duty)
         except (ValueError, IndexError):
@@ -59,11 +69,15 @@ class MotorDriver:
             self.EN.value(1)
 
 
-#
 if __name__ == '__main__':
-    # testing the code
+    """!
+    Entry point of the script.
+    """
 
+    # Initialize motor object
     moe = MotorDriver(pyb.Pin.board.PC1, pyb.Pin.board.PA0, pyb.Pin.board.PA1, pyb.Timer(5, freq=20000))
+
+    # Test the motor control
     moe.set_duty_cycle(-42)
     time.sleep(4)
     moe.set_duty_cycle(73)

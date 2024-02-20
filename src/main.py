@@ -1,3 +1,12 @@
+"""!
+@file main.py
+This file runs the control system on the microcontroller
+
+@Author ME405 team 8
+@date 20-Feb-2024
+"""
+
+
 import utime
 import encoder_reader
 import MotorDriver
