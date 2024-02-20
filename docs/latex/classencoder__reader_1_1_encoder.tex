@@ -1,0 +1,80 @@
+\doxysection{encoder\+\_\+reader.\+Encoder Class Reference}
+\hypertarget{classencoder__reader_1_1_encoder}{}\label{classencoder__reader_1_1_encoder}\index{encoder\_reader.Encoder@{encoder\_reader.Encoder}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classencoder__reader_1_1_encoder_ae42a4503ebfc1989b3ad95fb60980739}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, enc1\+\_\+pin, enc2\+\_\+pin, timer)
+\item 
+\mbox{\hyperlink{classencoder__reader_1_1_encoder_a0b5ad086c21a7c4c0fdcc7977b596092}{read}} (self)
+\item 
+\mbox{\hyperlink{classencoder__reader_1_1_encoder_a4f0013ab8cd7010afd07096840604a03}{zero}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classencoder__reader_1_1_encoder_a29398c6964ec3f4a02721762b2d670c0}\label{classencoder__reader_1_1_encoder_a29398c6964ec3f4a02721762b2d670c0} 
+{\bfseries tim}
+\item 
+\Hypertarget{classencoder__reader_1_1_encoder_af08df1e4c3c85768c1996fc4159ccce2}\label{classencoder__reader_1_1_encoder_af08df1e4c3c85768c1996fc4159ccce2} 
+{\bfseries enc1}
+\item 
+\Hypertarget{classencoder__reader_1_1_encoder_a49a7e6baf3e605c0956cd097dc6de072}\label{classencoder__reader_1_1_encoder_a49a7e6baf3e605c0956cd097dc6de072} 
+{\bfseries enc2}
+\item 
+\Hypertarget{classencoder__reader_1_1_encoder_a9fcf756897e246d3a265c02ae601fadf}\label{classencoder__reader_1_1_encoder_a9fcf756897e246d3a265c02ae601fadf} 
+{\bfseries position}
+\item 
+\Hypertarget{classencoder__reader_1_1_encoder_adc1abb5da39328fa092b6482a9b15c99}\label{classencoder__reader_1_1_encoder_adc1abb5da39328fa092b6482a9b15c99} 
+{\bfseries last}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Class to interface with an encoder.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classencoder__reader_1_1_encoder_ae42a4503ebfc1989b3ad95fb60980739}\label{classencoder__reader_1_1_encoder_ae42a4503ebfc1989b3ad95fb60980739} 
+\index{encoder\_reader.Encoder@{encoder\_reader.Encoder}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!encoder\_reader.Encoder@{encoder\_reader.Encoder}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily encoder\+\_\+reader.\+Encoder.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{enc1\+\_\+pin,  }\item[{}]{enc2\+\_\+pin,  }\item[{}]{timer }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initializes the Encoder instance.
+
+:param enc1_pin: Pin for encoder channel 1.
+:type enc1_pin: pyb.Pin
+:param enc2_pin: Pin for encoder channel 2.
+:type enc2_pin: pyb.Pin
+:param timer: Timer object for the encoder.
+:type timer: pyb.Timer
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classencoder__reader_1_1_encoder_a0b5ad086c21a7c4c0fdcc7977b596092}\label{classencoder__reader_1_1_encoder_a0b5ad086c21a7c4c0fdcc7977b596092} 
+\index{encoder\_reader.Encoder@{encoder\_reader.Encoder}!read@{read}}
+\index{read@{read}!encoder\_reader.Encoder@{encoder\_reader.Encoder}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily encoder\+\_\+reader.\+Encoder.\+read (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reads the encoder position and prints it.
+
+:return: None
+\end{DoxyVerb}
+ \Hypertarget{classencoder__reader_1_1_encoder_a4f0013ab8cd7010afd07096840604a03}\label{classencoder__reader_1_1_encoder_a4f0013ab8cd7010afd07096840604a03} 
+\index{encoder\_reader.Encoder@{encoder\_reader.Encoder}!zero@{zero}}
+\index{zero@{zero}!encoder\_reader.Encoder@{encoder\_reader.Encoder}}
+\doxysubsubsection{\texorpdfstring{zero()}{zero()}}
+{\footnotesize\ttfamily encoder\+\_\+reader.\+Encoder.\+zero (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Resets the encoder position to zero.
+
+:return: None
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/encoder\+\_\+reader.\+py\end{DoxyCompactItemize}
